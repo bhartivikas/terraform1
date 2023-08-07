@@ -6,16 +6,6 @@ pipeline {
     }
     agent any
     stages {
-        stage('checkout') {
-            steps {
-                script{
-                    dir("terraform")
-                    {
-                        git "https://github.com/bhartivikas/terraform1.git"
-                    }
-                }
-            }
-        }
         stage('Terraform init') {
             steps {
                  bat 'terraform init'
@@ -24,7 +14,7 @@ pipeline {
         }
         stage('Terraform apply') {
             steps {
-                 sh 'terraform apply --auto-approve'
+                 bat 'terraform apply --auto-approve'
                 
             }
         }
